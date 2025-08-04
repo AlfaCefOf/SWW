@@ -1,0 +1,294 @@
+/* === Глобальный стиль (в духе Netflix) === */
+
+body {
+  margin: 0;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  background-color: #141414;
+  color: #ffffff;
+}
+
+/* === Контейнер приложения === */
+
+.app {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+/* === Заголовки секций === */
+
+.title {
+  font-size: 28px;
+  margin: 40px 0 20px;
+  color: #fff;
+  border-left: 5px solid #e50914;
+  padding-left: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* === Сетка карточек (Netflix-style) === */
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 24px;
+  margin-top: 30px;
+}
+
+/* === Карточки === */
+
+.card {
+  position: relative;
+  background-color: #222;
+  border-radius: 6px;
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+}
+
+.card:hover {
+  transform: scale(1.08);
+  z-index: 10;
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.7);
+}
+
+.card img {
+  width: 100%;
+  height: 270px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-info {
+  padding: 12px;
+}
+
+.card-info h3 {
+  font-size: 16px;
+  margin: 0 0 6px 0;
+  color: #fff;
+  font-weight: bold;
+}
+
+.card-info p {
+  font-size: 13px;
+  color: #b3b3b3;
+  margin: 4px 0;
+}
+
+/* === Header (Netflix-style) === */
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #141414;
+  padding: 20px 40px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+}
+
+.logo {
+  color: #e50914;
+  font-size: 28px;
+  margin: 0;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.logo-link {
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+}
+
+.nav-links a {
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: #e50914;
+}
+
+/* === Поисковая строка === */
+
+.search-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.search-box input {
+  padding: 12px 16px;
+  font-size: 16px;
+  width: 300px;
+  border: none;
+  border-radius: 4px;
+  outline: none;
+  background-color: #333;
+  color: #fff;
+}
+
+.search-box input::placeholder {
+  color: #888;
+}
+
+.search-box button {
+  background-color: #e50914;
+  color: #fff;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-box button:hover {
+  background-color: #f6121d;
+}
+/* Универсальные стили карточек */
+
+.details-container {
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.details-card {
+  display: flex;
+  flex-direction: row;
+  max-width: 1000px;
+  background-color: #f7f9fc;
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.details-left {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.details-poster {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.details-info {
+  flex: 2;
+  padding: 20px 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.details-info h1 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.details-info p {
+  margin: 4px 0;
+  font-size: 16px;
+  line-height: 1.4;
+}
+
+.details-link,
+.details-button {
+  margin-top: 15px;
+  display: inline-block;
+  padding: 12px 18px;
+  background-color: #0066cc;
+  color: white;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.details-link:hover,
+.details-button:hover {
+  background-color: #004da3;
+}
+.load-more-button {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.load-more-button button {
+  background-color: #e50914;
+  color: white;
+  font-weight: bold;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.load-more-button button:hover {
+  background-color: #f6121d;
+}
+/* === Адаптивность === */
+
+@media (max-width: 768px) {
+  .results {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .card img {
+    height: 200px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+
+  .card-info h3 {
+    font-size: 14px;
+  }
+
+  .nav-links {
+    gap: 16px;
+  }
+
+  .nav-links a {
+    font-size: 14px;
+  }
+
+  .logo {
+    font-size: 24px;
+  }
+
+  .search-box {
+    flex-direction: column;
+  }
+
+  .search-box input {
+    width: 100%;
+  }
+
+  .search-box button {
+    width: 100%;
+  }
+}
