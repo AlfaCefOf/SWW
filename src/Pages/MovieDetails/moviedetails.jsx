@@ -31,13 +31,13 @@ function MovieDetails() {
         <div className="movie-details-info">
           <h1>{movie.title}</h1>
           <p>
-            <strong>Описание:</strong> {movie.overview}
+            <strong>Description:</strong> {movie.overview}
           </p>
           <p>
-            <strong>Рейтинг:</strong> {movie.vote_average}
+            <strong>Rating:</strong> {movie.vote_average}
           </p>
           <p>
-            <strong>Дата релиза:</strong> {movie.release_date}
+            <strong>Release date:</strong> {movie.release_date}
           </p>
 
           {movie.imdb_id && (
@@ -47,7 +47,7 @@ function MovieDetails() {
               rel="noopener noreferrer"
               className="movie-details-link"
             >
-              Смотреть на IMDb
+              Watch on IMDb
             </a>
           )}
         </div>

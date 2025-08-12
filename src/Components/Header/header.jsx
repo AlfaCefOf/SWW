@@ -9,8 +9,8 @@ function Header() {
         <h1 className="logo">SWW</h1>
       </Link>
       <nav>
-        <Link to="/games">Игры</Link>
-        <Link to="/movies">Фильмы и Сериалы</Link>
+        <Link to="/games">Games</Link>
+        <Link to="/movies">Movies and TV Series</Link>
       </nav>
     </div>
   );

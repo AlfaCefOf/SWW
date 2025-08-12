@@ -11,8 +11,8 @@ function Home() {
   const [searchQuery, setSearchQuery] = useState("");
   const [sortOrderGames, setSortOrderGames] = useState("az");
   const [sortOrderMedia, setSortOrderMedia] = useState("az");
-  const [currentPageGames, setCurrentPageGames] = useState(1); // Пагинация для игр
-  const [currentPageMedia, setCurrentPageMedia] = useState(1); // Пагинация для фильмов
+  const [currentPageGames, setCurrentPageGames] = useState(1);
+  const [currentPageMedia, setCurrentPageMedia] = useState(1);
 
   useEffect(() => {
     fetch(`${RAWG_API}&page=${currentPageGames}`)
@@ -24,21 +24,17 @@ function Home() {
       .then((data) => setMedia(data.results || []));
   }, [currentPageGames, currentPageMedia]);
 
-  // Фильтрация и сортировка игр
   const filteredGames = games
     .filter((game) => game.name.toLowerCase().includes(searchQuery.toLowerCase()))
     .sort((a, b) =>
       sortOrderGames === "az" ? a.name.localeCompare(b.name) : b.name.localeCompare(a.name)
     );
 
-  // Фильтрация и сортировка медиа
   const filteredMedia = media
     .filter(
       (item) =>
         item.media_type === "movie" &&
-        (item.title || item.name || "")
-          .toLowerCase()
-          .includes(searchQuery.toLowerCase())
+        (item.title || item.name || "").toLowerCase().includes(searchQuery.toLowerCase())
     )
     .sort((a, b) => {
       const nameA = a.title || a.name || "";
@@ -46,84 +42,98 @@ function Home() {
       return sortOrderMedia === "az" ? nameA.localeCompare(nameB) : nameB.localeCompare(nameA);
     });
 
-  // Функция для загрузки следующих страниц
-  const loadMoreGames = () => {
-    setCurrentPageGames((prev) => prev + 1);
-  };
-
-  const loadMoreMedia = () => {
-    setCurrentPageMedia((prev) => prev + 1);
-  };
-
   return (
     <div className="app">
-      {/* Поиск */}
-      <div className="search-box">
+      {/* Панель поиска и сортировки */}
+      <div className="search-sort-container">
         <input
           type="text"
-          placeholder="Поиск игр и фильмов..."
+          placeholder="Search for games and movies..."
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
+          className="search-input"
         />
       </div>
 
-      {/* Сортировка игр */}
-      <div className="search-box">
-        <button onClick={() => setSortOrderGames("az")}>Игры: A-Z</button>
-        <button onClick={() => setSortOrderGames("za")}>Игры: Z-A</button>
+      {/* Игры */}
+      <div className="section-header">
+        <h2 className="title">New Games</h2>
+        <div className="sort-buttons">
+          <button
+            className={sortOrderGames === "az" ? "active" : ""}
+            onClick={() => setSortOrderGames("az")}
+          >
+            A-Z
+          </button>
+          <button
+            className={sortOrderGames === "za" ? "active" : ""}
+            onClick={() => setSortOrderGames("za")}
+          >
+            Z-A
+          </button>
+        </div>
       </div>
 
-      <h2 className="title">Новые Игры</h2>
       <div className="results">
         {filteredGames.map((game) => (
-          <Link to={`/game/${game.id}`} key={game.id} style={{ textDecoration: "none", color: "inherit" }}>
-            <div className="card">
+          <Link to={`/game/${game.id}`} key={game.id} className="card">
+            <div className="card-image">
               <img
-                src={game.background_image ? game.background_image : "/no-image.jpg"}
+                src={game.background_image || "/no-image.jpg"}
                 alt={game.name}
               />
-              <div className="card-info">
-                <h3>{game.name}</h3>
-                <p>Рейтинг: {game.rating}</p>
-              </div>
+            </div>
+            <div className="card-info">
+              <h3>{game.name}</h3>
+              <p>Rating: {game.rating}</p>
             </div>
           </Link>
         ))}
       </div>
 
-      {/* Кнопка для загрузки дополнительных игр */}
       <div className="load-more-button">
-        <button onClick={loadMoreGames}>Показать больше игр</button>
+        <button onClick={() => setCurrentPageGames((p) => p + 1)}>Show more games</button>
       </div>
 
-      {/* Сортировка фильмов */}
-      <div className="search-box">
-        <button onClick={() => setSortOrderMedia("az")}>Фильмы: A-Z</button>
-        <button onClick={() => setSortOrderMedia("za")}>Фильмы: Z-A</button>
+      {/* Фильмы */}
+      <div className="section-header">
+        <h2 className="title">New Movies and TV Series</h2>
+        <div className="sort-buttons">
+          <button
+            className={sortOrderMedia === "az" ? "active" : ""}
+            onClick={() => setSortOrderMedia("az")}
+          >
+            A-Z
+          </button>
+          <button
+            className={sortOrderMedia === "za" ? "active" : ""}
+            onClick={() => setSortOrderMedia("za")}
+          >
+            Z-A
+          </button>
+        </div>
       </div>
 
-      <h2 className="title">Новые Фильмы и Сериалы</h2>
       <div className="results">
         {filteredMedia.map((item) => (
-          <Link to={`/movie/${item.id}`} key={item.id} style={{ textDecoration: "none", color: "inherit" }}>
-            <div className="card">
+          <Link to={`/movie/${item.id}`} key={item.id} className="card">
+            <div className="card-image">
               <img
                 src={item.poster_path ? `https://image.tmdb.org/t/p/w500${item.poster_path}` : "/no-image.jpg"}
                 alt={item.title || item.name}
               />
-              <div className="card-info">
-                <h3>{item.title || item.name}</h3>
-                <p>Тип: {item.media_type}</p>
-                <p>Рейтинг: {item.vote_average}</p>
-              </div>
+            </div>
+            <div className="card-info">
+              <h3>{item.title || item.name}</h3>
+              <p>Type: {item.media_type}</p>
+              <p>Rating: {item.vote_average}</p>
             </div>
           </Link>
         ))}
       </div>
 
-      {/* Кнопка для загрузки дополнительных фильмов */}
       <div className="load-more-button">
-        <button onClick={loadMoreMedia}>Показать больше фильмов</button>
+        <button onClick={() => setCurrentPageMedia((p) => p + 1)}>Show more movies</button>
       </div>
     </div>
   );

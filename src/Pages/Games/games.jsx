@@ -16,16 +16,16 @@ function Games() {
 
   return (
     <div className="app">
-      <h2 className="title">Поиск игр</h2>
+      <h2 className="title">Search games</h2>
       <div className="search-box">
         <input
           type="text"
-          placeholder="Введите название игры"
+          placeholder="Enter the game name"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         />
-        <button onClick={handleSearch}>Найти</button>
+        <button onClick={handleSearch}>Find</button>
       </div>
       <div className="results">
         {games
@@ -40,9 +40,9 @@ function Games() {
                 <img src={game.background_image} alt={game.name} />
                 <div className="card-info">
                   <h3>{game.name}</h3>
-                  <p>Рейтинг: {game.rating}</p>
+                  <p>Rating: {game.rating}</p>
                   <p>
-                    Платформы:{" "}
+                    Platforms:{" "}
                     {game.platforms?.map((p) => p.platform.name).join(", ") ||
                       "N/A"}
                   </p>

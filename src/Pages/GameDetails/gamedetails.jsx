@@ -42,7 +42,7 @@ function GameDetails() {
                   rel="noopener noreferrer"
                   className="game-details-button"
                 >
-                  Установить (Steam)
+                  Install (Steam)
                 </a>
               ))
           ) : (
@@ -52,7 +52,7 @@ function GameDetails() {
               rel="noreferrer"
               className="game-details-button"
             >
-              Установить
+              Install
             </a>
           )}
         </div>
@@ -60,19 +60,19 @@ function GameDetails() {
         <div className="game-details-info">
           <h1>{game.name}</h1>
           <p>
-            <strong>Описание:</strong> {game.description_raw || "Нет описания"}
+            <strong>Description:</strong> {game.description_raw || "Нет описания"}
           </p>
           <p>
-            <strong>Дата выхода:</strong> {game.released}
+            <strong>Release date:</strong> {game.released}
           </p>
           <p>
-            <strong>Рейтинг:</strong> {game.rating} / 5
+            <strong>Rating:</strong> {game.rating} / 5
           </p>
           <p>
-            <strong>Жанры:</strong> {game.genres.map((g) => g.name).join(", ")}
+            <strong>Genres:</strong> {game.genres.map((g) => g.name).join(", ")}
           </p>
           <p>
-            <strong>Платформы:</strong>{" "}
+            <strong>Platforms:</strong>{" "}
             {game.platforms.map((p) => p.platform.name).join(", ")}
           </p>
         </div>

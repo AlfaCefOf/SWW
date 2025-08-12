@@ -16,16 +16,16 @@ function Movies() {
 
   return (
     <div className="app">
-      <h2 className="title">Поиск фильмов и сериалов</h2>
+      <h2 className="title">Search for movies and TV series</h2>
       <div className="search-box">
         <input
           type="text"
-          placeholder="Введите название фильма или сериала"
+          placeholder="Enter the title of the movie or TV series"
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => e.key === "Enter" && handleSearch()}
         />
-        <button onClick={handleSearch}>Найти</button>
+        <button onClick={handleSearch}>Find</button>
       </div>
       <div className="results">
         {results
@@ -43,8 +43,8 @@ function Movies() {
                 />
                 <div className="card-info">
                   <h3>{item.title || item.name}</h3>
-                  <p>Тип: {item.media_type}</p>
-                  <p>Рейтинг: {item.vote_average}</p>
+                  <p>Type: {item.media_type}</p>
+                  <p>Rating: {item.vote_average}</p>
                 </div>
               </div>
             </Link>
