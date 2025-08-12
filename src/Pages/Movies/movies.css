@@ -64,3 +64,48 @@
   padding: 10px;
   font-size: 18px;
 }
+@media (max-width: 768px) {
+  .movies-search {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .movies-search input,
+  .movies-search button {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .movies-title {
+    font-size: 26px;
+    text-align: center;
+  }
+}
+
+/* 📱 Mobile */
+@media (max-width: 480px) {
+  .movies-page {
+    padding: 20px 10px;
+  }
+
+  .movies-title {
+    font-size: 22px;
+  }
+
+  .movies-search input {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .movies-search button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .movies-card h3 {
+    font-size: 16px;
+    text-align: center;
+  }
+}

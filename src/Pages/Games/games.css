@@ -64,3 +64,47 @@
   padding: 10px;
   font-size: 18px;
 }
+@media (max-width: 768px) {
+  .games-search {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: stretch;
+  }
+
+  .games-search input,
+  .games-search button {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .games-title {
+    font-size: 26px;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .games-page {
+    padding: 20px 10px;
+  }
+
+  .games-title {
+    font-size: 22px;
+  }
+
+  .games-search input {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .games-search button {
+    font-size: 14px;
+    padding: 8px 12px;
+  }
+
+  .games-card h3 {
+    font-size: 16px;
+    text-align: center;
+  }
+}
